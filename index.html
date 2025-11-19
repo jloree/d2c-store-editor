@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D2C Store Editor</title>
+    <link rel="stylesheet" href="https://use.typekit.net/fvs6qle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Oswald:wght@300;400;600&family=Bebas+Neue&family=Righteous&family=Fredoka+One&family=Bangers&family=Creepster&family=Orbitron:wght@400;700&family=Bungee&family=Monoton&family=Abril+Fatface&family=Lobster&family=Pacifico&family=Dancing+Script&family=Great+Vibes&family=Satisfy&family=Kaushan+Script&family=Amatic+SC:wght@400;700&family=Caveat:wght@400;700&family=Permanent+Marker&family=Indie+Flower&family=Shadows+Into+Light&family=Comfortaa:wght@300;400;700&family=Quicksand:wght@300;400;600&family=Nunito:wght@300;400;700&family=Poppins:wght@300;400;600;700&family=Raleway:wght@300;400;600&family=Lato:wght@300;400;700&family=Open+Sans:wght@300;400;600&family=Roboto:wght@300;400;500&family=Work+Sans:wght@300;400;600&family=Inter:wght@300;400;600&family=Crimson+Text:wght@400;600&family=Merriweather:wght@300;400;700&family=Lora:wght@400;600&family=PT+Serif:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600&family=Spectral:wght@300;400;600&family=Vollkorn:wght@400;600&family=Alegreya:wght@400;700&family=Rubik:wght@300;400;600&family=Fira+Sans:wght@300;400;600&family=Source+Sans+Pro:wght@300;400;600&family=Ubuntu:wght@300;400;500&family=Barlow:wght@300;400;600&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@300;400;600&family=JetBrains+Mono:wght@300;400;600&family=Fira+Code:wght@300;400;600&family=Source+Code+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="editor-panel">
+            <h2>Store Editor</h2>
+            
+            <div class="control-group">
+                <label for="page-type">Page Type:</label>
+                <select id="page-type">
+                    <option value="home">Home Page</option>
+                    <option value="product">Product Details Page</option>
+                    <option value="cart">Your Cart</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="example-type">Example Type:</label>
+                <select id="example-type">
+                    <option value="doja">Doja Example</option>
+                    <option value="generic">Generic Example</option>
+                </select>
+            </div>
+
+            <div id="generic-image-controls" class="control-group" style="display: none;">
+                <label for="banner-url">Banner Image URL:</label>
+                <input type="url" id="banner-url" placeholder="https://example.com/banner.jpg">
+                <button id="clear-banner" class="clear-btn">Clear</button>
+                
+                <label for="logo-url">Logo Image URL:</label>
+                <input type="url" id="logo-url" placeholder="https://example.com/logo.png">
+                <button id="clear-logo" class="clear-btn">Clear</button>
+            </div>
+
+            <button id="refresh-preview" class="refresh-btn">Refresh Preview</button>
+            
+            <div class="control-group">
+                <label for="font-family">Font Family:</label>
+                <select id="font-family">
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="'Helvetica Neue', sans-serif">Helvetica Neue</option>
+                    <option value="'Neue Haas Grotesk Display', sans-serif">Neue Haas Grotesk Display</option>
+                    <option value="Georgia, serif">Georgia</option>
+                    <option value="'Times New Roman', serif">Times New Roman</option>
+                    <option value="'Courier New', monospace">Courier New</option>
+                    
+                    <!-- Adobe Fonts -->
+                    <option value="'proxima-nova', sans-serif">Proxima Nova</option>
+                    <option value="'futura-pt', sans-serif">Futura PT</option>
+                    <option value="'minion-pro', serif">Minion Pro</option>
+                    <option value="'myriad-pro', sans-serif">Myriad Pro</option>
+                    <option value="'source-sans-pro', sans-serif">Source Sans Pro</option>
+                    <option value="'adobe-garamond-pro', serif">Adobe Garamond Pro</option>
+                    <option value="'trajan-pro-3', serif">Trajan Pro</option>
+                    <option value="'brandon-grotesque', sans-serif">Brandon Grotesque</option>
+                    <option value="'museo-sans', sans-serif">Museo Sans</option>
+                    <option value="'ff-din', sans-serif">FF DIN</option>
+                    <option value="'avenir-next', sans-serif">Avenir Next</option>
+                    <option value="'freight-text-pro', serif">Freight Text Pro</option>
+                    <option value="'acumin-pro', sans-serif">Acumin Pro</option>
+                    <option value="'adobe-caslon-pro', serif">Adobe Caslon Pro</option>
+                    
+                    <!-- Display & Creative Fonts -->
+                    <option value="'Playfair Display', serif">Playfair Display</option>
+                    <option value="'Oswald', sans-serif">Oswald</option>
+                    <option value="'Bebas Neue', sans-serif">Bebas Neue</option>
+                    <option value="'Righteous', sans-serif">Righteous</option>
+                    <option value="'Fredoka One', sans-serif">Fredoka One</option>
+                    <option value="'Bangers', sans-serif">Bangers</option>
+                    <option value="'Creepster', sans-serif">Creepster</option>
+                    <option value="'Orbitron', sans-serif">Orbitron</option>
+                    <option value="'Bungee', sans-serif">Bungee</option>
+                    <option value="'Monoton', sans-serif">Monoton</option>
+                    <option value="'Abril Fatface', serif">Abril Fatface</option>
+                    <option value="'Lobster', sans-serif">Lobster</option>
+                    <option value="'Pacifico', sans-serif">Pacifico</option>
+                    
+                    <!-- Script & Handwriting -->
+                    <option value="'Dancing Script', cursive">Dancing Script</option>
+                    <option value="'Great Vibes', cursive">Great Vibes</option>
+                    <option value="'Satisfy', cursive">Satisfy</option>
+                    <option value="'Kaushan Script', cursive">Kaushan Script</option>
+                    <option value="'Amatic SC', sans-serif">Amatic SC</option>
+                    <option value="'Caveat', cursive">Caveat</option>
+                    <option value="'Permanent Marker', cursive">Permanent Marker</option>
+                    <option value="'Indie Flower', cursive">Indie Flower</option>
+                    <option value="'Shadows Into Light', cursive">Shadows Into Light</option>
+                    
+                    <!-- Modern Sans-Serif -->
+                    <option value="'Comfortaa', sans-serif">Comfortaa</option>
+                    <option value="'Quicksand', sans-serif">Quicksand</option>
+                    <option value="'Nunito', sans-serif">Nunito</option>
+                    <option value="'Poppins', sans-serif">Poppins</option>
+                    <option value="'Raleway', sans-serif">Raleway</option>
+                    <option value="'Lato', sans-serif">Lato</option>
+                    <option value="'Open Sans', sans-serif">Open Sans</option>
+                    <option value="'Roboto', sans-serif">Roboto</option>
+                    <option value="'Work Sans', sans-serif">Work Sans</option>
+                    <option value="'Inter', sans-serif">Inter</option>
+                    <option value="'Rubik', sans-serif">Rubik</option>
+                    <option value="'Fira Sans', sans-serif">Fira Sans</option>
+                    <option value="'Ubuntu', sans-serif">Ubuntu</option>
+                    <option value="'Barlow', sans-serif">Barlow</option>
+                    <option value="'DM Sans', sans-serif">DM Sans</option>
+                    <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+                    
+                    <!-- Serif Fonts -->
+                    <option value="'Crimson Text', serif">Crimson Text</option>
+                    <option value="'Merriweather', serif">Merriweather</option>
+                    <option value="'Lora', serif">Lora</option>
+                    <option value="'PT Serif', serif">PT Serif</option>
+                    <option value="'Cormorant Garamond', serif">Cormorant Garamond</option>
+                    <option value="'Cinzel', serif">Cinzel</option>
+                    <option value="'Spectral', serif">Spectral</option>
+                    <option value="'Vollkorn', serif">Vollkorn</option>
+                    <option value="'Alegreya', serif">Alegreya</option>
+                    
+                    <!-- Monospace -->
+                    <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+                    <option value="'Fira Code', monospace">Fira Code</option>
+                    <option value="'Source Code Pro', monospace">Source Code Pro</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="primary-color">Primary Color:</label>
+                <input type="color" id="primary-color" value="#333333">
+                <input type="text" id="primary-color-hex" value="#333333" maxlength="7" placeholder="#000000">
+            </div>
+
+            <div class="control-group">
+                <label for="secondary-color">Secondary Color:</label>
+                <input type="color" id="secondary-color" value="#666666">
+                <input type="text" id="secondary-color-hex" value="#666666" maxlength="7" placeholder="#000000">
+            </div>
+
+            <div class="control-group">
+                <label for="accent-color">Accent Color:</label>
+                <input type="color" id="accent-color" value="#e74c3c">
+                <input type="text" id="accent-color-hex" value="#e74c3c" maxlength="7" placeholder="#000000">
+            </div>
+
+            <div class="control-group">
+                <label for="button-bg-color">Button Background Color:</label>
+                <input type="color" id="button-bg-color" value="#ffffff">
+                <input type="text" id="button-bg-color-hex" value="#ffffff" maxlength="7" placeholder="#000000">
+            </div>
+
+            <div class="control-group">
+                <label for="bg-color">Background Color:</label>
+                <input type="color" id="bg-color" value="#ffffff">
+                <input type="text" id="bg-color-hex" value="#ffffff" maxlength="7" placeholder="#000000">
+            </div>
+
+            <div class="control-group">
+                <label for="cart-color">Cart Icon Color:</label>
+                <input type="color" id="cart-color" value="#000000">
+                <input type="text" id="cart-color-hex" value="#000000" maxlength="7" placeholder="#000000">
+            </div>
+
+            <div class="control-group">
+                <label for="layout">Layout:</label>
+                <select id="layout">
+                    <option value="3-column">3 Column Grid</option>
+                    <option value="4-column" selected>4 Column Grid</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="show-section-headers">Section Headers:</label>
+                <select id="show-section-headers">
+                    <option value="show" selected>Show</option>
+                    <option value="hide">Hide</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="show-accessibility">Accessibility Message:</label>
+                <select id="show-accessibility">
+                    <option value="show" selected>Show</option>
+                    <option value="hide">Hide</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="title-font-size">Product Title Font Size:</label>
+                <select id="title-font-size">
+                    <option value="12px">12px</option>
+                    <option value="14px">14px</option>
+                    <option value="16px" selected>16px</option>
+                    <option value="18px">18px</option>
+                    <option value="20px">20px</option>
+                    <option value="24px">24px</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="price-font-size">Price Font Size:</label>
+                <select id="price-font-size">
+                    <option value="12px">12px</option>
+                    <option value="14px">14px</option>
+                    <option value="16px">16px</option>
+                    <option value="18px" selected>18px</option>
+                    <option value="20px">20px</option>
+                    <option value="24px">24px</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="footer-font-size">Footer Font Size:</label>
+                <select id="footer-font-size">
+                    <option value="12px">12px</option>
+                    <option value="14px" selected>14px</option>
+                    <option value="16px">16px</option>
+                    <option value="18px">18px</option>
+                    <option value="20px">20px</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <button id="toggle-overrides" class="toggle-btn">▶ Advanced Overrides</button>
+            </div>
+
+            <div id="overrides-section" class="overrides-section" style="display: none;">
+                <div class="control-group">
+                    <button id="reset-overrides" class="reset-btn">Reset to Template Defaults</button>
+                </div>
+
+                <div class="control-group">
+                    <label for="override-product-title-font">Product Title Font:</label>
+                    <select id="override-product-title-font">
+                        <option value="">Use Template Default</option>
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="'Poppins', sans-serif">Poppins</option>
+                        <option value="'Roboto', sans-serif">Roboto</option>
+                        <option value="'Open Sans', sans-serif">Open Sans</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="override-product-title-size">Product Title Size:</label>
+                    <select id="override-product-title-size">
+                        <option value="">Use Template Default</option>
+                        <option value="14px">14px</option>
+                        <option value="16px">16px</option>
+                        <option value="18px">18px</option>
+                        <option value="20px">20px</option>
+                        <option value="24px">24px</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="override-product-title-color">Product Title Color:</label>
+                    <input type="color" id="override-product-title-color">
+                </div>
+
+                <div class="control-group">
+                    <label for="override-price-font">Price Font:</label>
+                    <select id="override-price-font">
+                        <option value="">Use Template Default</option>
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="'Poppins', sans-serif">Poppins</option>
+                        <option value="'Roboto', sans-serif">Roboto</option>
+                        <option value="'Open Sans', sans-serif">Open Sans</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="override-price-size">Price Size:</label>
+                    <select id="override-price-size">
+                        <option value="">Use Template Default</option>
+                        <option value="14px">14px</option>
+                        <option value="16px">16px</option>
+                        <option value="18px">18px</option>
+                        <option value="20px">20px</option>
+                        <option value="24px">24px</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="override-price-color">Price Color:</label>
+                    <input type="color" id="override-price-color">
+                </div>
+
+                <div class="control-group">
+                    <label for="override-footer-font">Footer Font:</label>
+                    <select id="override-footer-font">
+                        <option value="">Use Template Default</option>
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="'Poppins', sans-serif">Poppins</option>
+                        <option value="'Roboto', sans-serif">Roboto</option>
+                        <option value="'Open Sans', sans-serif">Open Sans</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="override-footer-size">Footer Size:</label>
+                    <select id="override-footer-size">
+                        <option value="">Use Template Default</option>
+                        <option value="12px">12px</option>
+                        <option value="14px">14px</option>
+                        <option value="16px">16px</option>
+                        <option value="18px">18px</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="override-footer-color">Footer Color:</label>
+                    <input type="color" id="override-footer-color">
+                </div>
+
+                <div class="control-group">
+                    <label for="override-collection-font">Collection Header Font:</label>
+                    <select id="override-collection-font">
+                        <option value="">Use Template Default</option>
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="'Poppins', sans-serif">Poppins</option>
+                        <option value="'Roboto', sans-serif">Roboto</option>
+                        <option value="'Open Sans', sans-serif">Open Sans</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="override-collection-size">Collection Header Size:</label>
+                    <select id="override-collection-size">
+                        <option value="">Use Template Default</option>
+                        <option value="24pt">24pt</option>
+                        <option value="30pt">30pt</option>
+                        <option value="36pt">36pt</option>
+                        <option value="42pt">42pt</option>
+                        <option value="48pt">48pt</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="override-collection-color">Collection Header Color:</label>
+                    <input type="color" id="override-collection-color">
+                </div>
+
+                <div class="control-group">
+                    <label for="override-button-text-color">Button Text Color:</label>
+                    <input type="color" id="override-button-text-color">
+                </div>
+            </div>
+
+            <button id="generate-code" class="generate-btn">Generate HTML & CSS</button>
+            
+            <div class="control-group">
+                <button id="save-config" class="save-btn">Save Configuration</button>
+                <button id="load-config" class="load-btn">Load Configuration</button>
+            </div>
+        </div>
+
+        <div class="preview-window">
+            <h2>Preview</h2>
+            <div id="store-preview">
+                <header class="store-navbar">
+                    <div class="navbar-logo">
+                        <img src="Documentation/sampleD2C_files/Doja-Logo-500x300px.png" alt="Logo">
+                    </div>
+                    <div class="navbar-banner">
+                        <img src="Documentation/sampleD2C_files/Doja-Banner-3000x600px.png" alt="Banner">
+                    </div>
+                    <div class="navbar-cart">
+                        <button class="cart-button">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2M1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2"/>
+                            </svg>
+                            <span class="cart-badge">1</span>
+                        </button>
+                    </div>
+                </header>
+                
+                <div class="products-grid" id="products">
+                    <div class="product">
+                        <img src="Documentation/sampleD2C_files/71kGNFQHg9L._SY400_._FMpng_._AC_.png" alt="Album">
+                        <div class="product-info">
+                            <span class="product-name">Vie - Physical Touch Edition (Amazon Exclusive Edition)</span>
+                            <span class="product-price">$38.98</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product">
+                        <img src="Documentation/sampleD2C_files/81UDwonwgSL._SY400_._FMpng_._AC_.png" alt="Album">
+                        <div class="product-info">
+                            <span class="product-name">Vie</span>
+                            <span class="product-price">$31.49</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product">
+                        <img src="Documentation/sampleD2C_files/812ZDOyhKtL._SY400_._FMpng_._AC_.png" alt="Album">
+                        <div class="product-info">
+                            <span class="product-name">Vie</span>
+                            <span class="product-price">$11.98</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product">
+                        <img src="Documentation/sampleD2C_files/7122DmIepYL._SY400_._FMpng_._AC_.png" alt="T-Shirt">
+                        <div class="product-info">
+                            <span class="product-name">Official Tracklist T-Shirt</span>
+                            <span class="product-price">$45.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product">
+                        <img src="Documentation/sampleD2C_files/61W79hnlVfL._SY400_._FMpng_._AC_.png" alt="T-Shirt">
+                        <div class="product-info">
+                            <span class="product-name">Official Rose T-Shirt</span>
+                            <span class="product-price">$45.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product">
+                        <img src="Documentation/sampleD2C_files/71xpwGFcFRL._SY400_._FMpng_._AC_.png" alt="Hoodie">
+                        <div class="product-info">
+                            <span class="product-name">Official Leopard Hoodie</span>
+                            <span class="product-price">$80.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product">
+                        <img src="Documentation/sampleD2C_files/71YpbWrIdpL._SY400_._FMpng_._AC_.png" alt="Cap">
+                        <div class="product-info">
+                            <span class="product-name">Official Red Vie Cap</span>
+                            <span class="product-price">$45.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product">
+                        <img src="Documentation/sampleD2C_files/71Tfk-x40lL._SY400_._FMpng_._AC_.png" alt="Accessory">
+                        <div class="product-info">
+                            <span class="product-name">Official Vie Satin Scarf</span>
+                            <span class="product-price">$15.00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <footer class="store-footer">
+                    <div class="footer-content">
+                        <div class="footer-top-section">
+                            <nav class="footer-nav">
+                                <a href="#">Doja Cat ©2025</a>
+                                <a href="#">Terms of Service</a>
+                                <a href="#">Privacy Policy</a>
+                                <a href="#">FAQs</a>
+                            </nav>
+                            <nav class="footer-nav-right">
+                                <a href="#">Instagram</a>
+                                <a href="#">TikTok</a>
+                                <a href="#">Twitter</a>
+                                <a href="#">Facebook</a>
+                            </nav>
+                        </div>
+                        <div class="accessibility-support">
+                            If you are using a screen reader and having problems reading this website, get accessibility support from&nbsp;<a href="#">Amazon Accessibility</a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <div id="code-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Generated Code</h3>
+            <div class="code-section">
+                <h4>HTML:</h4>
+                <textarea id="generated-html" readonly></textarea>
+                <button onclick="copyToClipboard('generated-html')">Copy HTML</button>
+            </div>
+            <div class="code-section">
+                <h4>CSS:</h4>
+                <textarea id="generated-css" readonly></textarea>
+                <button onclick="copyToClipboard('generated-css')">Copy CSS</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/editor.js"></script>
+</body>
+</html>

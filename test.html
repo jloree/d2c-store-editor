@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test D2C Switcher</title>
+</head>
+<body>
+    <h1>Testing D2C Example Switcher</h1>
+    
+    <select id="example-type">
+        <option value="doja">Doja Example</option>
+        <option value="generic">Generic Example</option>
+    </select>
+    
+    <div id="test-output"></div>
+    
+    <script>
+        // Product data for different examples
+        const PRODUCT_DATA = {
+            doja: [
+                { img: "Documentation/sampleD2C_files/71kGNFQHg9L._SY400_._FMpng_._AC_.png", name: "Vie - Physical Touch Edition (Amazon Exclusive Edition)", price: "$38.98" },
+                { img: "Documentation/sampleD2C_files/81UDwonwgSL._SY400_._FMpng_._AC_.png", name: "Vie", price: "$31.49" }
+            ],
+            generic: [
+                { img: "hat.png", name: "Hat", price: "$25" },
+                { img: "hoodie.png", name: "Hoodie", price: "$80" }
+            ]
+        };
+        
+        function generateProductsHTML() {
+            const exampleType = document.getElementById('example-type').value;
+            const products = PRODUCT_DATA[exampleType];
+            
+            return products.map(product => `
+                <div class="product">
+                    <img src="${product.img}" alt="${product.name}" style="width:100px;">
+                    <div class="product-info">
+                        <span class="product-name">${product.name}</span>
+                        <span class="product-price">${product.price}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function updateProducts() {
+            document.getElementById('test-output').innerHTML = generateProductsHTML();
+        }
+        
+        document.getElementById('example-type').addEventListener('change', updateProducts);
+        
+        // Initial load
+        updateProducts();
+    </script>
+</body>
+</html>
