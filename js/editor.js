@@ -29,6 +29,7 @@ class D2CEditor {
         this.modal = document.getElementById('code-modal');
         
         this.initializeEventListeners();
+        this.initCollectionTabs();
         this.switchPage(); // Load initial page
         this.applyStyles();
     }
@@ -1410,6 +1411,59 @@ function copyToClipboard(elementId) {
         button.textContent = originalText;
     }, 2000);
 }
+
+// Collection tabs functionality
+D2CEditor.prototype.initCollectionTabs = function() {
+    // Add event listener for when products are loaded
+    const observer = new MutationObserver(() => {
+        const tabs = document.querySelectorAll('.tab-link');
+        if (tabs.length > 0) {
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Filter products based on collection
+                    const collection = tab.dataset.collection;
+                    this.filterProducts(collection);
+                });
+            });
+            observer.disconnect();
+        }
+    });
+    
+    observer.observe(document.body, { childList: true, subtree: true });
+};
+
+D2CEditor.prototype.filterProducts = function(collection) {
+    const products = document.querySelectorAll('#products .product');
+    
+    products.forEach(product => {
+        const productName = product.querySelector('.product-name').textContent.toLowerCase();
+        let show = true;
+        
+        if (collection !== 'all') {
+            switch (collection) {
+                case 'music':
+                    show = productName.includes('vie') || productName.includes('album') || productName.includes('vinyl') || productName.includes('cd');
+                    break;
+                case 'apparel':
+                    show = productName.includes('t-shirt') || productName.includes('hoodie') || productName.includes('shirt');
+                    break;
+                case 'accessories':
+                    show = productName.includes('cap') || productName.includes('scarf') || productName.includes('hat') || productName.includes('bag');
+                    break;
+            }
+        }
+        
+        product.style.display = show ? 'block' : 'none';
+    });
+};
 
 // Initialize the editor when the page loads
 document.addEventListener('DOMContentLoaded', () => {
